@@ -9,7 +9,11 @@ import GalleryItem from './GalleryItem';
 
 function App() {
   const [activePage, setActivePage] = useState('empanadas');
-  const [cart, setCart] = useState([]);
+  // Cambiar inicialización del carrito para leer de localStorage
+  const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem('cart');
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
   const [showCartDropdown, setShowCartDropdown] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showCopySuccess, setShowCopySuccess] = useState(false);
@@ -24,6 +28,11 @@ function App() {
       document.body.removeChild(script);
     };
   }, []);
+
+  // Guardar el carrito en localStorage cada vez que cambie
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   const handlePagingClick = (page) => {
     setActivePage(page);
