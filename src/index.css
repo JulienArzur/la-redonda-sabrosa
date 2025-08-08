@@ -1539,4 +1539,78 @@ address {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   padding: 15px;
   z-index: 1003;
+  /* Añadido para evitar overflow en móviles */
+  max-width: 95vw;
+  min-width: 240px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+/* --- Responsive adjustments for cart icon and dropdown --- */
+@media (max-width: 600px) {
+  .cart-icon {
+    top: 10px;
+    right: 10px;
+    /* Asegura que el icono nunca se salga de la pantalla */
+    transform: none !important;
+  }
+  .cart-icon img {
+    width: 32px;
+    height: 32px;
+  }
+  .cart-dropdown {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 98vw;
+    min-width: 0;
+    max-width: 98vw;
+    border-radius: 8px;
+    padding: 10px 2vw;
+    box-sizing: border-box;
+  }
+  .cart-table th,
+  .cart-table td {
+    font-size: 0.95rem;
+    padding: 4px;
+  }
+  .cart-table {
+    font-size: 0.95rem;
+    min-width: 250px;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+  .cart-item-img {
+    width: 32px;
+    height: 32px;
+  }
+  .cart-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cart-actions .btn-agregar {
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+}
+
+/* Evita desplazamiento horizontal global en móviles */
+@media (max-width: 600px) {
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+  }
+  .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    flex-wrap: wrap;
+  }
 }
