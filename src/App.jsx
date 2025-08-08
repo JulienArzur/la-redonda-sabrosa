@@ -315,7 +315,24 @@ function App() {
                   {showCopySuccess && <span className="copy-success-message">¡Copiado!</span>}
                 </div>
               </div>
-              <p className="text-center">Una vez realizado el pago, envíanos el comprobante por <span className="whatsapp-green">WhatsApp</span>.</p>
+              <p className="text-center">
+                Una vez realizado el pago, envíanos el comprobante por{' '}
+                <a
+                  href={`https://wa.me/5493541230992?text=${encodeURIComponent(
+                    `Hola, realicé una compra en La Redonda Sabrosa.\nMonto: $${cartTotal.toLocaleString('es-AR')}\nProductos:\n${cart
+                      .map((item) => `- ${item.name} x${item.quantity} ($${item.price.toLocaleString('es-AR')})`)
+                      .join('\n')}\nAlias de pago: laredonda.sabrosa`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="whatsapp-green"
+                  style={{ fontWeight: 'bold', textDecoration: 'none' }}
+                  onClick={closePaymentModal}
+                >
+                  WhatsApp
+                </a>
+                .
+              </p>
               <div className="cart-buttons">
                 <button className="btn-cerrar btn-cerrar:hover" onClick={closePaymentModal}>Cerrar</button>
               </div>
