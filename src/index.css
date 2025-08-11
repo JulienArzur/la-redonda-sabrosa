@@ -986,7 +986,57 @@ address {
     margin-top: 0.5rem; /* Menos espacio arriba de la navegación */
 }
 
-/* ...existing code... */
+/* --- Responsive navbar for mobile --- */
+@media (max-width: 600px) {
+  .tm-header-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 0;
+    gap: 0;
+  }
+  .tm-nav-ul {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    align-items: stretch;
+    padding: 0;
+    margin: 0;
+  }
+  .tm-nav-li {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #fff2;
+  }
+  .tm-nav-li:last-child {
+    border-bottom: none;
+  }
+  .tm-nav-link {
+    display: block;
+    width: 100%;
+    padding: 16px 0;
+    font-size: 1.15rem;
+    color: white;
+    background: none;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+  }
+  .tm-nav-link.active,
+  .tm-nav-link:hover {
+    background-color: #cc942d;
+    color: #fff;
+    border-bottom: none;
+  }
+  /* Asegura que el carrito no tape el navbar */
+  .cart-icon {
+    top: 10px;
+    right: 10px;
+    z-index: 2001;
+  }
+}
+
 .btn-agregar {
   background-color: #cf9120;
   color: white;
@@ -1558,32 +1608,55 @@ address {
     width: 32px;
     height: 32px;
   }
+  /* Carrito tipo modal centrado y ancho casi total */
   .cart-dropdown {
+    position: fixed;
+    top: 60px;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-    width: 98vw;
+    width: 96vw;
     min-width: 0;
-    max-width: 98vw;
-    border-radius: 8px;
+    max-width: 96vw;
+    border-radius: 12px;
     padding: 10px 2vw;
     box-sizing: border-box;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    z-index: 2000;
   }
-  .cart-table th,
-  .cart-table td {
-    font-size: 0.95rem;
-    padding: 4px;
-  }
-  .cart-table {
-    font-size: 0.95rem;
-    min-width: 250px;
-    width: 100%;
-    overflow-x: auto;
+  /* Tabla apilada, no horizontal */
+  .cart-table,
+  .cart-table thead,
+  .cart-table tbody,
+  .cart-table tr {
     display: block;
+    width: 100%;
+  }
+  .cart-table thead {
+    display: none;
+  }
+  .cart-table tr {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+  }
+  .cart-table td {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 1rem;
+    padding: 4px 0;
+    border: none;
+    justify-content: flex-start;
+    gap: 8px;
   }
   .cart-item-img {
     width: 32px;
     height: 32px;
+    margin-right: 8px;
+  }
+  .quantity-controls {
+    gap: 4px;
   }
   .cart-actions {
     flex-direction: column;
@@ -1593,6 +1666,12 @@ address {
     width: 100%;
     font-size: 1rem;
     margin-bottom: 0;
+  }
+  .cart-total {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
   }
 }
 
