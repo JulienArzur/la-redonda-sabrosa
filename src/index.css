@@ -1693,3 +1693,54 @@ address {
     flex-wrap: wrap;
   }
 }
+@media (max-width: 600px) {
+  .tm-header-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; /* 🔹 Esto alinea verticalmente carrito y links */
+    padding: 6px 10px;
+  }
+
+  .tm-nav-ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  .tm-nav-li {
+    padding: 0;
+    margin: 0;
+  }
+
+  .tm-nav-link {
+    font-size: 0.9rem;
+    padding: 4px;
+  }
+
+  .cart-icon {
+    position: relative; /* En la misma línea */
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+    margin-left: 1rem;
+  }
+
+  .cart-icon img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart-icon.fixed-mobile {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: none;
+    z-index: 2000;
+  }
+}

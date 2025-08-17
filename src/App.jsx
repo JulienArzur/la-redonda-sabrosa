@@ -104,58 +104,6 @@ function App() {
   return (
     <Router>
       <>
-        <div className="cart-icon" onClick={() => setShowCartDropdown(!showCartDropdown)}>
-          <img src="/cart-icon.png" alt="Carrito" />
-          {cart.length > 0 && <span className="cart-count">{cart.reduce((total, item) => total + (item.quantity || 1), 0)}</span>}
-          {showCartDropdown && (
-            <div className="cart-dropdown">
-              <h4 className="text-center">Tu Carrito</h4>
-              {cart.length === 0 ? (
-                <p className="text-center">El carrito está vacío.</p>
-              ) : (
-                <>
-                  <table className="cart-table">
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cant.</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {cart.map((item) => (
-                        <tr key={item.id}>
-                          <td>
-                            <img src={item.image} alt={item.name} className="cart-item-img" />
-                          </td>
-                          <td>{item.name}</td>
-                          <td>${item.price.toLocaleString('es-AR')}</td>
-                          <td>
-                            <div className="quantity-controls">
-                              <button onClick={(e) => { e.stopPropagation(); decreaseQuantity(item.id); }}>-</button>
-                              <span>{item.quantity}</span>
-                              <button onClick={(e) => { e.stopPropagation(); increaseQuantity(item.id); }}>+</button>
-                            </div>
-                          </td>
-                          <td>
-                            <button className="remove-item-btn" onClick={(e) => { e.stopPropagation(); removeFromCart(item.id); }}>X</button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <p className="cart-total">Total: ${cartTotal.toLocaleString('es-AR')}</p>
-                  <div className="cart-actions">
-                    <button className="btn-agregar" onClick={(e) => { e.stopPropagation(); clearCart(); }}>Vaciar Carrito</button>
-                    <button className="btn-agregar" onClick={(e) => { e.stopPropagation(); handleProceedToPayment(); }}>Proceder al pago</button>
-                  </div>
-                </>
-              )}
-            </div>
-          )}
-        </div>
         <div className="container">
           <div>
             <div className="placeholder">
@@ -192,7 +140,58 @@ function App() {
                             </Link>
                           </li>
                         </ul>
-
+                        <div className="cart-icon" onClick={() => setShowCartDropdown(!showCartDropdown)}>
+                          <img src="/cart-icon.png" alt="Carrito" />
+                          {cart.length > 0 && <span className="cart-count">{cart.reduce((total, item) => total + (item.quantity || 1), 0)}</span>}
+                          {showCartDropdown && (
+                            <div className="cart-dropdown">
+                              <h4 className="text-center">Tu Carrito</h4>
+                              {cart.length === 0 ? (
+                                <p className="text-center">El carrito está vacío.</p>
+                              ) : (
+                                <>
+                                  <table className="cart-table">
+                                    <thead>
+                                      <tr>
+                                        <th></th>
+                                        <th>Producto</th>
+                                        <th>Precio</th>
+                                        <th>Cant.</th>
+                                        <th></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {cart.map((item) => (
+                                        <tr key={item.id}>
+                                          <td>
+                                            <img src={item.image} alt={item.name} className="cart-item-img" />
+                                          </td>
+                                          <td>{item.name}</td>
+                                          <td>${item.price.toLocaleString('es-AR')}</td>
+                                          <td>
+                                            <div className="quantity-controls">
+                                              <button onClick={(e) => { e.stopPropagation(); decreaseQuantity(item.id); }}>-</button>
+                                              <span>{item.quantity}</span>
+                                              <button onClick={(e) => { e.stopPropagation(); increaseQuantity(item.id); }}>+</button>
+                                            </div>
+                                          </td>
+                                          <td>
+                                            <button className="remove-item-btn" onClick={(e) => { e.stopPropagation(); removeFromCart(item.id); }}>X</button>
+                                          </td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                  <p className="cart-total">Total: ${cartTotal.toLocaleString('es-AR')}</p>
+                                  <div className="cart-actions">
+                                    <button className="btn-agregar" onClick={(e) => { e.stopPropagation(); clearCart(); }}>Vaciar Carrito</button>
+                                    <button className="btn-agregar" onClick={(e) => { e.stopPropagation(); handleProceedToPayment(); }}>Proceder al pago</button>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
